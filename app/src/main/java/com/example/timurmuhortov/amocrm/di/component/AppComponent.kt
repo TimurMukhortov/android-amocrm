@@ -3,7 +3,6 @@ package com.example.timurmuhortov.amocrm.di.component
 import android.app.Application
 import android.content.Context
 import com.example.timurmuhortov.amocrm.di.module.AppModule
-import com.example.timurmuhortov.amocrm.di.module.RealmModule
 import com.example.timurmuhortov.amocrm.di.module.RouterModule
 import com.example.timurmuhortov.amocrm.di.module.RepositoryModule
 import dagger.BindsInstance
@@ -21,8 +20,7 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(
         AppModule::class,
         RouterModule::class,
-        RepositoryModule::class,
-        RealmModule::class
+        RepositoryModule::class
 ))
 interface AppComponent {
 

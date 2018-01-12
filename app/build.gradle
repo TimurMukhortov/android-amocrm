@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -21,7 +23,9 @@ android {
         }
     }
 }
-
+kapt {
+    generateStubs = true
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -40,15 +44,20 @@ dependencies {
     //Cicerone
     compile 'ru.terrakok.cicerone:cicerone:2.1.0'
 
+    def daggerVer = 2.12
     //Dagger
-    compile 'com.google.dagger:dagger:2.12'
-    compile 'com.google.dagger:dagger-android:2.12'
-    compile 'com.google.dagger:dagger-android-support:2.12'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.12'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.12'
+    compile "com.google.dagger:dagger:$daggerVer"
+    compile "com.google.dagger:dagger-android:$daggerVer"
+    compile "com.google.dagger:dagger-android-support:$daggerVer"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVer"
+    kapt "com.google.dagger:dagger-compiler:$daggerVer"
+    kapt "com.google.dagger:dagger-android-support:$daggerVer"
 
     //ButterKnife
     compile "com.jakewharton:butterknife:8.8.1"
     kapt "com.jakewharton:butterknife-compiler:8.8.1"
 
+}
+repositories {
+    mavenCentral()
 }

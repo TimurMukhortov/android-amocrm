@@ -1,10 +1,7 @@
 package com.example.timurmuhortov.amocrm.di.module.main
 
-import com.example.timurmuhortov.amocrm.di.scope.ActivityScope
 import com.example.timurmuhortov.amocrm.di.scope.FragmentScope
-import com.example.timurmuhortov.amocrm.ui.custom.IRoutingBinder
 import com.example.timurmuhortov.amocrm.ui.fragment.MainFragment
-import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -21,6 +18,5 @@ abstract class MainActivityModule {
     @FragmentScope
     @ContributesAndroidInjector
     abstract fun mainFragmentInjector(): MainFragment
-
 
 }

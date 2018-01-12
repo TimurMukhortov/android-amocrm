@@ -2,6 +2,7 @@ package com.example.timurmuhortov.amocrm
 
 import android.app.Activity
 import android.app.Application
+import com.example.timurmuhortov.amocrm.di.component.DaggerAppComponent
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
@@ -14,15 +15,19 @@ import javax.inject.Inject
  **/
 
 
-class AmocrmApplication: Application(), HasActivityInjector{
+class AmocrmApplication : Application(), HasActivityInjector {
 
     @Inject
-    protected  lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
+    protected lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
 
-
+        DaggerAppComponent
+                .builder()
+                .context(this)
+                .build()
+                .inject(this)
     }
 
     override fun activityInjector() = dispatchingActivityInjector

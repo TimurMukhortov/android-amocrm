@@ -25,7 +25,7 @@ import javax.inject.Inject
 class MainFragment : BaseFragment(), IMainView {
 
     companion object {
-        fun newInstance() = MainFragment
+        fun newInstance() = MainFragment()
     }
 
     @Inject

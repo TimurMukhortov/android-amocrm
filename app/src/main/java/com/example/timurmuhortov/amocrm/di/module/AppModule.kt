@@ -1,8 +1,8 @@
 package com.example.timurmuhortov.amocrm.di.module
 
-import com.example.timurmuhortov.amocrm.MainActivity
 import com.example.timurmuhortov.amocrm.di.module.main.MainActivityModule
 import com.example.timurmuhortov.amocrm.di.scope.ActivityScope
+import com.example.timurmuhortov.amocrm.ui.activity.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule

@@ -7,6 +7,7 @@ import okhttp3.ResponseBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 /**
  * @author: timur.mukhortov
@@ -32,5 +33,5 @@ interface AmocrmAPI {
      */
     //получение списка карт
     @GET("api/v2/leads")
-    fun deals(): Single<List<Deal>>
+    fun deals(@Query ("type") type: String): Single<List<Deal>>
 }

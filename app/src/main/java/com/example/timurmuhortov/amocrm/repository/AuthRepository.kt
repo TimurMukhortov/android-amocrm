@@ -25,7 +25,7 @@ class AuthRepository @Inject constructor(
 ): IAuthRepository {
 
     override fun deals(): Single<List<Deal>> =
-        retrofit.deals()
+        retrofit.deals("json")
                 .subscribeOn(Schedulers.io())
                 .onErrorResumeNext { Single.error(networkErrorMapper.map(it)) }
                 .observeOn(AndroidSchedulers.mainThread())

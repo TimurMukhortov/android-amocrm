@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -21,13 +23,52 @@ android {
         }
     }
 }
-
+kapt {
+    generateStubs = true
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
+    //RecyclerView
+    compile 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    //Moxy
+    compile "com.arello-mobile:moxy:1.5.3"
+    compile "com.arello-mobile:moxy-android:1.5.3"
+    compile "com.arello-mobile:moxy-app-compat:1.5.3"
+    kapt "com.arello-mobile:moxy-compiler:1.5.3"
+
+    def daggerVer = 2.12
+    //Dagger
+    compile "com.google.dagger:dagger:$daggerVer"
+    compile "com.google.dagger:dagger-android:$daggerVer"
+    compile "com.google.dagger:dagger-android-support:$daggerVer"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVer"
+    kapt "com.google.dagger:dagger-compiler:$daggerVer"
+    kapt "com.google.dagger:dagger-android-support:$daggerVer"
+
+    //ButterKnife
+    compile "com.jakewharton:butterknife:8.8.1"
+    kapt "com.jakewharton:butterknife-compiler:8.8.1"
+
+    //RxJava2
+    compile "io.reactivex.rxjava2:rxjava:2.1.5"
+    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
+
+    //Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.google.code.gson:gson:2.8.2'
+
+    //Gson
+    compile "com.google.code.gson:gson:2.8.2"
+}
+repositories {
+    mavenCentral()
 }

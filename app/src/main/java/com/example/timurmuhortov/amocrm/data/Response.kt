@@ -1,5 +1,7 @@
 package com.example.timurmuhortov.amocrm.data
 
+import com.google.gson.annotations.SerializedName
+
 /**
  * @author: timur.mukhortov
  * date: 14.01.2018
@@ -8,4 +10,7 @@ package com.example.timurmuhortov.amocrm.data
  **/
 
 
-data class Response<out T>(val embedded: Embedded<T>)
+data class Response<out T>(
+        @SerializedName("_embedded")
+        val embedded: Embedded<T>
+)

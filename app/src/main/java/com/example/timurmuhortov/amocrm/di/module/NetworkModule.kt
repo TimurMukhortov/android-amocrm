@@ -28,6 +28,16 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
+//    @Provides
+//    @Singleton
+//    fun provideInterceptor() = AmoCrmInterceptor()
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
+            .readTimeout(120, TimeUnit.SECONDS)
+            .build()
+
     @Provides
     @Singleton
     fun provideGson() = GsonBuilder()
@@ -35,12 +45,6 @@ class NetworkModule {
             .registerTypeAdapter(Date::class.java, DateAdapter())
             .setExclusionStrategies(AnnotationExclusionStrategy())
             .create()
-
-    @Provides
-    @Singleton
-    fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
-            .readTimeout(120, TimeUnit.SECONDS)
-            .build()
 
 
     @Provides

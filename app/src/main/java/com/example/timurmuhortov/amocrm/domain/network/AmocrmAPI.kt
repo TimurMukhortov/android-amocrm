@@ -1,6 +1,7 @@
 package com.example.timurmuhortov.amocrm.domain.network
 
 import com.example.timurmuhortov.amocrm.data.Deal
+import com.example.timurmuhortov.amocrm.data.Response
 import com.example.timurmuhortov.amocrm.data.UserData
 import io.reactivex.Single
 import okhttp3.ResponseBody
@@ -33,5 +34,9 @@ interface AmocrmAPI {
      */
     //получение списка карт
     @GET("api/v2/leads")
-    fun deals(@Query ("type") type: String): Single<List<Deal>>
+    fun deals(
+            @Query("USER_LOGIN") name: String,
+            @Query("USER_PASSWORD") password: String,
+            @Query("USER_HASHUSER_HASH") hash: String,
+            @Query ("type") type: String): Single<Response<Deal>>
 }

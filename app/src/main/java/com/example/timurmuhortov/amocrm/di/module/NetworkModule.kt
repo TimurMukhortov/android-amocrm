@@ -2,6 +2,8 @@ package com.example.timurmuhortov.amocrm.di.module
 
 import com.example.timurmuhortov.amocrm.domain.URLS
 import com.example.timurmuhortov.amocrm.domain.network.AmocrmAPI
+import com.example.timurmuhortov.amocrm.util.gson.AnnotationExclusionStrategy
+import com.example.timurmuhortov.amocrm.util.gson.DateAdapter
 import com.example.timurmuhortov.amocrm.util.retrofit.INetworkErrorMapper
 import com.example.timurmuhortov.amocrm.util.retrofit.NetworkErrorMapper
 import com.google.gson.Gson
@@ -12,6 +14,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -24,15 +27,24 @@ import javax.inject.Singleton
 
 @Module
 class NetworkModule {
-    @Provides
-    @Singleton
-    fun provideGson() = GsonBuilder().create()
+
+//    @Provides
+//    @Singleton
+//    fun provideInterceptor() = AmoCrmInterceptor()
 
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
             .readTimeout(120, TimeUnit.SECONDS)
             .build()
+
+    @Provides
+    @Singleton
+    fun provideGson() = GsonBuilder()
+            .setLenient()
+            .registerTypeAdapter(Date::class.java, DateAdapter())
+            .setExclusionStrategies(AnnotationExclusionStrategy())
+            .create()
 
 
     @Provides
@@ -46,7 +58,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideElpassApi(retrofit: Retrofit) = retrofit.create(AmocrmAPI::class.java)
+    fun provideAmocrmApi(retrofit: Retrofit) = retrofit.create(AmocrmAPI::class.java)
 
     @Provides
     @Singleton

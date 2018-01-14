@@ -3,7 +3,8 @@ package com.example.timurmuhortov.amocrm.presentation.presenter
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.example.timurmuhortov.amocrm.data.login.UserData
+import com.example.timurmuhortov.amocrm.data.Deal
+import com.example.timurmuhortov.amocrm.data.UserData
 import com.example.timurmuhortov.amocrm.di.scope.FragmentScope
 import com.example.timurmuhortov.amocrm.domain.irepository.IAuthRepository
 import com.example.timurmuhortov.amocrm.presentation.view.IMainView
@@ -22,6 +23,8 @@ class MainPresenter @Inject constructor(
         private val authRepository: IAuthRepository
 ) : MvpPresenter<IMainView>() {
 
+    private var saveDeals: MutableList<Deal> = mutableListOf()
+
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         authRepository.login(
@@ -30,7 +33,12 @@ class MainPresenter @Inject constructor(
                         "31b5fec772537f93367884097b89239d",
                         "json"))
                 .subscribe({
-                    Log.i("Main", "OK")
+                    authRepository.deals()
+                            .subscribe({ deals ->
+                                saveDeals.addAll(deals)
+                            }, {
+                                Log.i("Main", it.message)
+                            })
                 }, {
                     Log.i("Main", it.message)
                 })

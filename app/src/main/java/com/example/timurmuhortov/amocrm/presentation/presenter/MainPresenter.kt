@@ -33,12 +33,15 @@ class MainPresenter @Inject constructor(
                         "31b5fec772537f93367884097b89239d",
                         "json"))
                 .subscribe({
-                    authRepository.deals()
-                            .subscribe({ deals ->
-                                saveDeals.addAll(deals)
-                            }, {
-                                Log.i("Main", it.message)
-                            })
+                    Log.i("Main", "Все ок")
+//                    authRepository.deals()
+//                            .subscribe(
+//                                    { deals ->
+//
+//                                        Log.i("Main", "Сделки пришли!")
+//                                    }, {
+//                                Log.i("Main", it.message)
+//                            })
                 }, {
                     Log.i("Main", it.message)
                 })

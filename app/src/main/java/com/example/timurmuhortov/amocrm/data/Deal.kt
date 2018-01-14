@@ -12,6 +12,9 @@ import java.util.*
 
 
 data class Deal(
-        @SerializedName("_links")
-        val links: String
+
+        @SerializedName("id")
+        val id: String,
+        @SerializedName("name")
+        val name: String
 )

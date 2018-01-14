@@ -1,6 +1,10 @@
 package com.example.timurmuhortov.amocrm.di.module
 
+import com.example.timurmuhortov.amocrm.domain.network.AmocrmAPI
+import com.example.timurmuhortov.amocrm.repository.AuthRepository
 import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
 /**
  * @author: timur.mukhortov
@@ -11,4 +15,9 @@ import dagger.Module
 
 @Module
 class RepositoryModule {
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(retrofit: AmocrmAPI) = AuthRepository(retrofit)
+
 }

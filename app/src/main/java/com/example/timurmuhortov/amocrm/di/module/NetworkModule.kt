@@ -1,6 +1,9 @@
 package com.example.timurmuhortov.amocrm.di.module
 
+import com.example.timurmuhortov.amocrm.domain.URLS
 import com.example.timurmuhortov.amocrm.domain.network.AmocrmAPI
+import com.example.timurmuhortov.amocrm.util.retrofit.INetworkErrorMapper
+import com.example.timurmuhortov.amocrm.util.retrofit.NetworkErrorMapper
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -35,7 +38,7 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(gson: Gson, client: OkHttpClient) = Retrofit.Builder()
-            .baseUrl("https://new5a57e0b6d71e1.amocrm.ru/")
+            .baseUrl(URLS.BACKEND_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(client)
@@ -44,4 +47,9 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideElpassApi(retrofit: Retrofit) = retrofit.create(AmocrmAPI::class.java)
+
+    @Provides
+    @Singleton
+    fun provideErrorMapper(retrofit: Retrofit): INetworkErrorMapper = NetworkErrorMapper(retrofit)
+
 }

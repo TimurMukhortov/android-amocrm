@@ -3,6 +3,7 @@ package com.example.timurmuhortov.amocrm.repository
 import com.example.timurmuhortov.amocrm.data.login.UserData
 import com.example.timurmuhortov.amocrm.domain.irepository.IAuthRepository
 import com.example.timurmuhortov.amocrm.domain.network.AmocrmAPI
+import com.example.timurmuhortov.amocrm.util.retrofit.INetworkErrorMapper
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -19,13 +20,14 @@ import javax.inject.Inject
 
 
 class AuthRepository @Inject constructor(
-        private val retrofit: AmocrmAPI
-
+        private val retrofit: AmocrmAPI,
+        private val errorMapper: INetworkErrorMapper
 ): IAuthRepository {
 
     override fun login(userData: UserData): Single<ResponseBody> =
         retrofit.auth(userData)
                 .subscribeOn(Schedulers.io())
+                .onErrorResumeNext { Single.error(errorMapper.map(it)) }
                 .observeOn(AndroidSchedulers.mainThread())
 
 }

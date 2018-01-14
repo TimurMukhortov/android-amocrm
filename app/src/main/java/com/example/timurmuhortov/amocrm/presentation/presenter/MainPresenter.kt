@@ -32,7 +32,7 @@ class MainPresenter @Inject constructor(
                 .subscribe({
                     Log.i("Main", "OK")
                 }, {
-                    Log.i("Main", "ERROR")
+                    Log.i("Main", it.message)
                 })
 
     }

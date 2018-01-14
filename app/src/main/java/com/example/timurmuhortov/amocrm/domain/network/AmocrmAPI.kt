@@ -32,7 +32,6 @@ interface AmocrmAPI {
      *
      * Get list of deals
      */
-    //получение списка карт
     @GET("api/v2/leads")
     fun deals(
             @Query("USER_LOGIN") name: String,

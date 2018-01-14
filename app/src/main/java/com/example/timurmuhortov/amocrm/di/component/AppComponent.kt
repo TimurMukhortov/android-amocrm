@@ -1,9 +1,9 @@
 package com.example.timurmuhortov.amocrm.di.component
 
-import android.app.Application
 import android.content.Context
 import com.example.timurmuhortov.amocrm.AmocrmApplication
 import com.example.timurmuhortov.amocrm.di.module.AppModule
+import com.example.timurmuhortov.amocrm.di.module.NetworkModule
 import com.example.timurmuhortov.amocrm.di.module.RepositoryModule
 import dagger.BindsInstance
 import dagger.Component
@@ -19,7 +19,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = arrayOf(
         AppModule::class,
-        RepositoryModule::class
+        RepositoryModule::class,
+        NetworkModule::class
 ))
 interface AppComponent {
 

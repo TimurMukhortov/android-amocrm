@@ -1,6 +1,7 @@
 package com.example.timurmuhortov.amocrm.domain.irepository
 
-import com.example.timurmuhortov.amocrm.data.login.UserData
+import com.example.timurmuhortov.amocrm.data.Deal
+import com.example.timurmuhortov.amocrm.data.UserData
 import io.reactivex.Single
 import okhttp3.ResponseBody
 
@@ -15,4 +16,6 @@ import okhttp3.ResponseBody
 interface IAuthRepository {
 
     fun login(userData: UserData): Single<ResponseBody>
+
+    fun deals(): Single<List<Deal>>
 }

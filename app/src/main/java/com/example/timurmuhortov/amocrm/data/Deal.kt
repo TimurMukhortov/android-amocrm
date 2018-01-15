@@ -17,7 +17,7 @@ data class Deal(
         val id: String,
         @SerializedName("name")
         val name: String,
-        @SerializedName("created_by")
+        @SerializedName("created_at")
         val date: String,
         @SerializedName("sale")
         val budget: String

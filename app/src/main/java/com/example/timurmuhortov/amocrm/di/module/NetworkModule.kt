@@ -28,10 +28,6 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-//    @Provides
-//    @Singleton
-//    fun provideInterceptor() = AmoCrmInterceptor()
-
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()

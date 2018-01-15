@@ -1,4 +1,4 @@
-package com.example.timurmuhortov.amocrm.data
+package com.example.timurmuhortov.amocrm.data.settings
 
 import com.google.gson.annotations.SerializedName
 

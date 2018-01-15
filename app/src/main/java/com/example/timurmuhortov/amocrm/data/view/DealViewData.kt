@@ -12,4 +12,6 @@ data class DealViewData(
         val name: String,
         val date: String?,
         val budget: String
+//        val status: String,
+//        val statusColor: String
 )

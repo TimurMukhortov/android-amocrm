@@ -74,6 +74,9 @@ dependencies {
 
     //Gson
     compile "com.google.code.gson:gson:2.8.2"
+
+    //Joda
+    compile 'net.danlew:android.joda:2.9.9.1'
 }
 repositories {
     mavenCentral()

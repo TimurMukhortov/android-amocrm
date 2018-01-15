@@ -5,6 +5,7 @@ import android.app.Application
 import com.example.timurmuhortov.amocrm.di.component.DaggerAppComponent
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import net.danlew.android.joda.JodaTimeAndroid
 import javax.inject.Inject
 
 /**
@@ -22,6 +23,8 @@ class AmocrmApplication : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
+
+        JodaTimeAndroid.init(this);
 
         DaggerAppComponent
                 .builder()

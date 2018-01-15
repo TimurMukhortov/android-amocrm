@@ -10,6 +10,8 @@ import com.example.timurmuhortov.amocrm.data.view.DealViewData
 import com.example.timurmuhortov.amocrm.di.scope.FragmentScope
 import com.example.timurmuhortov.amocrm.domain.irepository.IAuthRepository
 import com.example.timurmuhortov.amocrm.presentation.view.IMainView
+import net.danlew.android.joda.DateUtils
+import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -69,8 +71,10 @@ class MainPresenter @Inject constructor(
     }
 
     private fun convertTimeStampToDate(timestamp: String): String? {
-        val simpleDateFormat = SimpleDateFormat("MM/dd/yyyy")
-        val netDate = Date(timestamp.toLong())
-        return simpleDateFormat.format(netDate)
+        val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
+        val netDate = DateTime((timestamp.toLong()) * 1000L)
+        val myDate = Date(netDate.millis)
+        val testDate = simpleDateFormat.format(myDate)
+        return testDate
     }
 }

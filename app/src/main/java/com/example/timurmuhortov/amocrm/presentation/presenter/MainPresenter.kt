@@ -4,12 +4,14 @@ import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.timurmuhortov.amocrm.data.Deal
-import com.example.timurmuhortov.amocrm.data.Embedded
 import com.example.timurmuhortov.amocrm.data.Response
 import com.example.timurmuhortov.amocrm.data.UserData
+import com.example.timurmuhortov.amocrm.data.view.DealViewData
 import com.example.timurmuhortov.amocrm.di.scope.FragmentScope
 import com.example.timurmuhortov.amocrm.domain.irepository.IAuthRepository
 import com.example.timurmuhortov.amocrm.presentation.view.IMainView
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -32,7 +34,7 @@ class MainPresenter @Inject constructor(
         getAuth()
     }
 
-    fun getAuth(){
+    fun getAuth() {
         authRepository.login(
                 UserData("t.mukhortov@gmail.com",
                         "IO6k77El",
@@ -46,14 +48,29 @@ class MainPresenter @Inject constructor(
                 })
     }
 
-    private fun getDeal(){
+    private fun getDeal() {
         authRepository.deals()
                 .subscribe(
                         { deals ->
                             saveDeals = deals
+                            viewState.showDeals(
+                                    deals.embedded.items.map {
+                                        DealViewData(
+                                                it.name,
+                                                convertTimeStampToDate(it.date),
+                                                it.budget
+                                        )
+                                    }
+                            )
                             Log.i("Main", "Список сделок получен.")
                         }, {
                     Log.i("Main", "Проблема с получением списка сделок: " + it.message)
                 })
+    }
+
+    private fun convertTimeStampToDate(timestamp: String): String? {
+        val simpleDateFormat = SimpleDateFormat("MM/dd/yyyy")
+        val netDate = Date(timestamp.toLong())
+        return simpleDateFormat.format(netDate)
     }
 }

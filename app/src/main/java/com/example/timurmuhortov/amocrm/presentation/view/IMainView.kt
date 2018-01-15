@@ -3,6 +3,7 @@ package com.example.timurmuhortov.amocrm.presentation.view
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
+import com.example.timurmuhortov.amocrm.data.view.DealViewData
 
 /**
  * @author: timur.mukhortov
@@ -13,4 +14,7 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface IMainView: MvpView {
+
+    fun showDeals(deals: List<DealViewData>)
+
 }

@@ -3,8 +3,11 @@ package com.example.timurmuhortov.amocrm.ui.viewholder
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
+import butterknife.BindView
+import butterknife.ButterKnife
 import com.example.timurmuhortov.amocrm.R
-import java.util.zip.Inflater
+import com.example.timurmuhortov.amocrm.data.view.DealViewData
 
 /**
  * @author: timur.mukhortov
@@ -18,4 +21,23 @@ class DealViewHolder (
         inflater: LayoutInflater,
         container: ViewGroup
 ): RecyclerView.ViewHolder(inflater.inflate(R.layout.item_deal, container, false)) {
+
+    @BindView(R.id.text_deal_name)
+    lateinit var textDealName: TextView
+
+    @BindView(R.id.text_deal_date)
+    lateinit var textDealDate: TextView
+
+    @BindView(R.id.text_deal_budget)
+    lateinit var textDealBudget: TextView
+
+    init {
+        ButterKnife.bind(this, itemView)
+    }
+
+    fun bind(data: DealViewData){
+        textDealName.text = data.name
+        textDealDate.text = data.date.toString()
+        textDealBudget.text = data.budget
+    }
 }

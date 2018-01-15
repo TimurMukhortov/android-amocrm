@@ -1,21 +1,20 @@
 package com.example.timurmuhortov.amocrm.domain.irepository
 
 import com.example.timurmuhortov.amocrm.data.Deal
+import com.example.timurmuhortov.amocrm.data.Embedded
 import com.example.timurmuhortov.amocrm.data.Response
-import com.example.timurmuhortov.amocrm.data.UserData
 import io.reactivex.Single
-import okhttp3.ResponseBody
 
 /**
  * @author: timur.mukhortov
- * date: 14.01.2018
- * time: 1:44
+ * date: 15.01.2018
+ * time: 14:22
  * @LinkedIn: linkedin.com/in/timurmukhortov
  **/
 
 
-interface IAuthRepository {
+interface IDealsRepository {
 
-    fun login(userData: UserData): Single<ResponseBody>
+    fun deals(): Single<Response<Deal>>
 
 }

@@ -1,6 +1,7 @@
 package com.example.timurmuhortov.amocrm.domain.network
 
 import com.example.timurmuhortov.amocrm.data.Deal
+import com.example.timurmuhortov.amocrm.data.Embedded
 import com.example.timurmuhortov.amocrm.data.Response
 import com.example.timurmuhortov.amocrm.data.UserData
 import io.reactivex.Single

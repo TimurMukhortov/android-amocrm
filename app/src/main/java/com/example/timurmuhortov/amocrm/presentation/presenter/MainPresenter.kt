@@ -3,17 +3,13 @@ package com.example.timurmuhortov.amocrm.presentation.presenter
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.example.timurmuhortov.amocrm.data.Deal
-import com.example.timurmuhortov.amocrm.data.Embedded
-import com.example.timurmuhortov.amocrm.data.Response
-import com.example.timurmuhortov.amocrm.data.UserData
+import com.example.timurmuhortov.amocrm.data.settings.UserData
 import com.example.timurmuhortov.amocrm.data.view.DealViewData
 import com.example.timurmuhortov.amocrm.di.scope.FragmentScope
 import com.example.timurmuhortov.amocrm.domain.irepository.IAuthRepository
 import com.example.timurmuhortov.amocrm.domain.irepository.IDealsRepository
 import com.example.timurmuhortov.amocrm.presentation.view.IMainView
-import com.example.timurmuhortov.amocrm.repository.DealsRepository
-import net.danlew.android.joda.DateUtils
+import com.example.timurmuhortov.amocrm.util.retrofit.NetworkError
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,6 +44,9 @@ class MainPresenter @Inject constructor(
                     Log.i("Main", "Авторизация прошла успешно.")
                     getDeal()
                 }, {
+                    (it as? NetworkError)?.message?.let {
+                        viewState.showError(it)
+                    }
                     Log.i("Main", "Проблема с авторизацией: " + it.message)
                 })
     }
@@ -67,6 +66,9 @@ class MainPresenter @Inject constructor(
                             )
                             Log.i("Main", "Список сделок получен.")
                         }, {
+                    (it as? NetworkError)?.message?.let {
+                        viewState.showError(it)
+                    }
                     Log.i("Main", "Проблема с получением списка сделок: " + it.message)
                 })
     }

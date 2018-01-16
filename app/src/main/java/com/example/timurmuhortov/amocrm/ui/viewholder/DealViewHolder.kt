@@ -1,5 +1,7 @@
 package com.example.timurmuhortov.amocrm.ui.viewholder
 
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -31,6 +33,9 @@ class DealViewHolder (
     @BindView(R.id.text_deal_budget)
     lateinit var textDealBudget: TextView
 
+    @BindView(R.id.cardView_deal)
+    lateinit var cardViewDeal: CardView
+
     init {
         ButterKnife.bind(this, itemView)
     }
@@ -39,5 +44,20 @@ class DealViewHolder (
         textDealName.text = data.name
         textDealDate.text = data.date.toString()
         textDealBudget.text = data.budget
+        //Метод для проставления бэкграунда у CardView в зависимсти от статуса сделки
+        //setBackGround(data.statusColor)
+    }
+
+    private fun setBackGround( hexColor: String ){
+
+        when(hexColor){
+            "#CCFF66" -> cardViewDeal.background = ContextCompat.getDrawable(itemView.context, R.color.colorStatusSuccessfullyImplemented)
+            "#D5D8DB" -> cardViewDeal.background = ContextCompat.getDrawable(itemView.context, R.color.colorStatusClosedAndNotImplemented)
+            "#99ccff" -> cardViewDeal.background = ContextCompat.getDrawable(itemView.context, R.color.colorStatusFirstContact)
+            "#ffff99" -> cardViewDeal.background = ContextCompat.getDrawable(itemView.context, R.color.colorStatusConversation)
+            "#ffcc66" -> cardViewDeal.background = ContextCompat.getDrawable(itemView.context, R.color.colorMakeDecision)
+            "#ffcccc" -> cardViewDeal.background = ContextCompat.getDrawable(itemView.context, R.color.colorHarmonizationContract)
+
+        }
     }
 }

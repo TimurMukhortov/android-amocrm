@@ -3,4 +3,5 @@
     <string name="text_name">Название сделки:</string>
     <string name="text_date">Дата сделки:</string>
     <string name="text_budget">Бюджет сделки:</string>
+    <string name="no_deal">Сделок нет</string>
 </resources>

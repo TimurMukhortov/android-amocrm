@@ -3,8 +3,6 @@ package com.example.timurmuhortov.amocrm.di.module.main
 import android.app.Activity
 import com.example.timurmuhortov.amocrm.di.scope.ActivityScope
 import com.example.timurmuhortov.amocrm.di.scope.FragmentScope
-import com.example.timurmuhortov.amocrm.domain.irepository.IAuthRepository
-import com.example.timurmuhortov.amocrm.repository.AuthRepository
 import com.example.timurmuhortov.amocrm.ui.activity.MainActivity
 import com.example.timurmuhortov.amocrm.ui.fragment.MainFragment
 import dagger.Binds
@@ -28,10 +26,5 @@ abstract class MainActivityModule {
     @Binds
     @ActivityScope
     abstract fun activity(activity: MainActivity): Activity
-
-    @Binds
-    @ActivityScope
-    abstract fun  repository(repository: AuthRepository): IAuthRepository
-
 
 }

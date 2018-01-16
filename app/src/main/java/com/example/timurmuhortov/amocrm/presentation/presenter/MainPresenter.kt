@@ -4,12 +4,17 @@ import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.timurmuhortov.amocrm.data.Deal
+import com.example.timurmuhortov.amocrm.data.Embedded
 import com.example.timurmuhortov.amocrm.data.Response
 import com.example.timurmuhortov.amocrm.data.UserData
 import com.example.timurmuhortov.amocrm.data.view.DealViewData
 import com.example.timurmuhortov.amocrm.di.scope.FragmentScope
 import com.example.timurmuhortov.amocrm.domain.irepository.IAuthRepository
+import com.example.timurmuhortov.amocrm.domain.irepository.IDealsRepository
 import com.example.timurmuhortov.amocrm.presentation.view.IMainView
+import com.example.timurmuhortov.amocrm.repository.DealsRepository
+import net.danlew.android.joda.DateUtils
+import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -24,17 +29,16 @@ import javax.inject.Inject
 @FragmentScope
 @InjectViewState
 class MainPresenter @Inject constructor(
-        private val authRepository: IAuthRepository
+        private val authRepository: IAuthRepository,
+        private val dealsRepository: IDealsRepository
 ) : MvpPresenter<IMainView>() {
-
-    private var saveDeals: Response<Deal>? = null
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         getAuth()
     }
 
-    fun getAuth() {
+    private fun getAuth() {
         authRepository.login(
                 UserData("t.mukhortov@gmail.com",
                         "IO6k77El",
@@ -49,10 +53,9 @@ class MainPresenter @Inject constructor(
     }
 
     private fun getDeal() {
-        authRepository.deals()
+        dealsRepository.deals()
                 .subscribe(
                         { deals ->
-                            saveDeals = deals
                             viewState.showDeals(
                                     deals.embedded.items.map {
                                         DealViewData(
@@ -69,8 +72,8 @@ class MainPresenter @Inject constructor(
     }
 
     private fun convertTimeStampToDate(timestamp: String): String? {
-        val simpleDateFormat = SimpleDateFormat("MM/dd/yyyy")
-        val netDate = Date(timestamp.toLong())
+        val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
+        val netDate = Date(DateTime((timestamp.toLong()) * 1000L).millis)
         return simpleDateFormat.format(netDate)
     }
 }

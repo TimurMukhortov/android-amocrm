@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"/>
 
     <TextView
         android:id="@+id/text_no_passengers"
@@ -20,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="сделок нет"
+        android:text="@string/no_deal"
         android:visibility="gone"
         tools:visibility="visible" />
 

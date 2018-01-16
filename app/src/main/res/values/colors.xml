@@ -4,4 +4,13 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorBlack">#060304</color>
+
+    <!--Color status deal-->
+    <color name="colorStatusSuccessfullyImplemented">#CCFF66</color>
+    <color name="colorStatusClosedAndNotImplemented">#D5D8DB</color>
+    <color name="colorStatusFirstContact">#99ccff</color>
+    <color name="colorStatusConversation">#ffff99</color>
+    <color name="colorMakeDecision">#ffcc66</color>
+    <color name="colorHarmonizationContract">#ffcccc</color>
+
 </resources>

@@ -1,6 +1,6 @@
 package com.example.timurmuhortov.amocrm.repository
 
-import com.example.timurmuhortov.amocrm.data.UserData
+import com.example.timurmuhortov.amocrm.data.settings.UserData
 import com.example.timurmuhortov.amocrm.domain.irepository.IAuthRepository
 import com.example.timurmuhortov.amocrm.domain.network.AmocrmAPI
 import com.example.timurmuhortov.amocrm.util.retrofit.INetworkErrorMapper

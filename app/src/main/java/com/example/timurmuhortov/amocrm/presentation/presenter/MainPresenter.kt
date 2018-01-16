@@ -9,6 +9,7 @@ import com.example.timurmuhortov.amocrm.di.scope.FragmentScope
 import com.example.timurmuhortov.amocrm.domain.irepository.IAuthRepository
 import com.example.timurmuhortov.amocrm.domain.irepository.IDealsRepository
 import com.example.timurmuhortov.amocrm.presentation.view.IMainView
+import com.example.timurmuhortov.amocrm.util.retrofit.NetworkError
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
@@ -43,6 +44,9 @@ class MainPresenter @Inject constructor(
                     Log.i("Main", "Авторизация прошла успешно.")
                     getDeal()
                 }, {
+                    (it as? NetworkError)?.message?.let {
+                        viewState.showError(it)
+                    }
                     Log.i("Main", "Проблема с авторизацией: " + it.message)
                 })
     }
@@ -62,6 +66,9 @@ class MainPresenter @Inject constructor(
                             )
                             Log.i("Main", "Список сделок получен.")
                         }, {
+                    (it as? NetworkError)?.message?.let {
+                        viewState.showError(it)
+                    }
                     Log.i("Main", "Проблема с получением списка сделок: " + it.message)
                 })
     }

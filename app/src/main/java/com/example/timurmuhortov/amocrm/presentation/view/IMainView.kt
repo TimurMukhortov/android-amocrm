@@ -17,4 +17,6 @@ interface IMainView: MvpView {
 
     fun showDeals(deals: List<DealViewData>)
 
+    fun showError(msg: String)
+
 }

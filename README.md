@@ -1,1 +1,1 @@
-https://t.me/joinchat/DfVQ-ArrsmhCUMkHQj5VCg
+Telegram: t.me/ru_android_help
